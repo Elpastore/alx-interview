@@ -2,36 +2,27 @@
 """
 lockboxes module
 """
-def get_item(boxes, index):
-    """
-    function that get the item in the box
-    """
-    for item in boxes:
-        if item == index:
-            return True
-        else:
-            return False
+
+
 def canUnlockAll(boxes):
     """
-    function that check if boxes can be
-    unlocked
+    function that check if all boxes can be uncloked
+    args:
+        -boxes: list of integer
+    Return:
+        -True if all boxes can be unloked
+        -False not all boxes can be unlocked
     """
-    for index in range(0, len(boxes)):
-            # if len(boxes[index]) == 1:
-                # print("One item in the boxe number: ", index )
-            value = boxes[index][0] if boxes[index] else None
-            for j in range(0, len(boxes)):
-                print(boxes[j], end=' ')
-                if boxes[j] == []:
-                    print(f'empty')
-                else:
-                    print(boxes[j][0])
-                    if (index != j and boxes[j][0] == index):
-                        print(j, index, boxes[j][0], value)
-                        print(f'key is found')
-            print()
-                
-            """else:
-                print("More than one item in the boxe number: ", index)"""
-boxes = [[0], [4], [5], [8], [1]]
-canUnlockAll(boxes)
+    unLocked = set()
+    unLocked.add(0)  # Start by unlocking the first box
+    keys = set(boxes[0])  # Keys from the first box
+
+    while keys:
+        new_keys = set()
+        for key in keys:
+            if key < len(boxes) and key not in unLocked:
+                unLocked.add(key)
+                new_keys.update(boxes[key])  # add new keys from unlocked boxes
+        keys = new_keys  # new keys to be iterated
+
+    return len(unLocked) == len(boxes)
