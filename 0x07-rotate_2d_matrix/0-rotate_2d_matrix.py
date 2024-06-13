@@ -5,14 +5,12 @@
 
 
 def rotate_2d_matrix(matrix):
+    """
+    rotate a matrix
+    """
     n = len(matrix)
-
-    # Step 1: Transpose the matrix (swap rows with columns)
     for row in range(n):
         for col in range(row, n):
-            matrix[row][col] = matrix[col][row]
-            matrix[col][row] = matrix[row][col]
-
-    # Step 2: Reverse each row
-    for row in range(n):
-        matrix[row].reverse()
+            matrix[row][col], matrix[col][row] = matrix[col][row], matrix[row][col]
+    for row in matrix:
+        row.reverse()
