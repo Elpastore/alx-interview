@@ -1,12 +1,11 @@
 #!/usr/bin/python3
 """
-island perimeter module
+Island perimeter module
 """
-
 
 def island_perimeter(grid):
     """
-    function that give the perimeter of island
+    Function that calculates the perimeter of an island
     """
 
     rows, cols = len(grid), len(grid[0])
@@ -16,9 +15,9 @@ def island_perimeter(grid):
         for col in range(cols):
             if grid[row][col] == 1:
                 perimeter += 4
-                if row < cols - 1 and grid[row + 1][col] == 1:
+                if row < rows - 1 and grid[row + 1][col] == 1:
                     perimeter -= 2
-                if col < rows - 1 and grid[row][col + 1] == 1:
+                if col < cols - 1 and grid[row][col + 1] == 1:
                     perimeter -= 2
 
     return perimeter
