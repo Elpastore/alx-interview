@@ -1,0 +1,1 @@
+this project is about prime game algorithm
